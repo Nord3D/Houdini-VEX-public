@@ -8,6 +8,7 @@
 #define NM_SQRT2_12     0.11785113019775792073      /// sqrt(2) / 12        <Volume of a Regular Tetrahedron with Unit edge length>
 
 
+
 vector2 rot90(vector2 v)
 {
     vector2 r = v;
@@ -74,6 +75,37 @@ int rayplaneintersection(vector r, r0, pn, p0; float d)
         return 1;                               /// Intersection point exist
     }
 }
+
+
+vector orthogonalize(vector N, T)
+{
+    vector B = cross(N, T);
+    return normalize(cross(T, B));
+}
+
+vector rodrigues(vector 
+                        v,  // Vector to rotate
+                        v1, // Source vector, normalized
+                        v2  // Target vector, normalized
+                    )
+{
+    vector axis = cross(v1, v2);
+    vector axisn = normalize(axis);
+    float cosq = dot(v1, v2);
+    return v * cosq + cross(axis, v) + axisn * dot(axisn, v) * (1. - cosq);
+}
+
+vector rodihedral(vector v1,    // Vector to rotate
+                         v2;    // Target vector, normalized
+                  float mix)
+{
+    vector axis = cross((v1), v2);
+    float angle = acos(dot(v1, v2)) * mix;
+    axis = normalize(axis) * sin(angle);
+    float cosq = cos(angle);
+    return v1 * cosq + cross(axis, v1);
+}
+
 
 
 
