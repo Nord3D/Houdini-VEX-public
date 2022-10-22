@@ -96,11 +96,22 @@ vector rodrigues(vector
 }
 
 vector rodihedral(vector v1,    // Vector to rotate
+                         v2     // Target vector, normalized
+                   )
+{
+    vector v1n = normalize(v1);
+    vector axis = cross(v1n, v2);
+    float cosq = dot(v1n, v2);
+    return v1 * cosq + cross(axis, v1);
+}
+
+vector rodihedral(vector v1,    // Vector to rotate
                          v2;    // Target vector, normalized
                   float mix)
 {
-    vector axis = cross(v1, v2);
-    float angle = acos(dot(v1, v2)) * mix;
+    vector v1n = normalize(v1);
+    vector axis = cross(v1n, v2);
+    float angle = acos(dot(v1n, v2)) * mix;
     axis = normalize(axis) * sin(angle);
     float cosq = cos(angle);
     return v1 * cosq + cross(axis, v1);
