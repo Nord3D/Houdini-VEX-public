@@ -99,7 +99,7 @@ vector rodihedral(vector v1,    // Vector to rotate
                          v2;    // Target vector, normalized
                   float mix)
 {
-    vector axis = cross((v1), v2);
+    vector axis = cross(v1, v2);
     float angle = acos(dot(v1, v2)) * mix;
     axis = normalize(axis) * sin(angle);
     float cosq = cos(angle);
