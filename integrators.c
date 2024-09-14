@@ -252,7 +252,7 @@ function void pefrl (vector r, v; float h)
 
 
 
-/* TEST */
+/* TEST RK-based */
 
 v@v_ = h * rk1(@P, h);
 v@v_ = h * rk2(@P, h);
