@@ -62,6 +62,27 @@ float skewlinesdist(vector P11, P12, P21, P22, C1, C2)
     return distance(C1, C2);
 }
 
+int segmentsintersect(vector P11,P12, P21,P22, P)
+/// P1X, P2X - segments points
+/// P - intersection point
+{
+    vector D1 = normalize(P12 - P11);
+    vector D2 = normalize(P22 - P21);
+    
+    vector N = cross(D1, D2);
+    vector N1 = cross(D1, N);
+    vector N2 = cross(D2, N);
+    
+    vector S = P21 - P11;
+    float d1 = dot( S, N2) / dot(D1, N2);
+        if ( d1 < 0 || d1 > length(P12 - P11) ) return 0;
+    float d2 = dot(-S, N1) / dot(D2, N1);
+        if ( d2 < 0 || d2 > length(P22 - P21) ) return 0;
+
+    P = P11 + d1 * D1;
+    return 1;
+}
+
 int rayplaneintersection(vector r, r0, pn, p0; float d)
     /// r - ray (unit vector), r0 - ray starting point, pn - plane normal, p0 - plane point 
     /// d - resultant ray distance from starting point to intersection point with plane
