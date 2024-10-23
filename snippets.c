@@ -149,7 +149,7 @@ vector dirproject(
 /*https://math.stackexchange.com/questions/3027898/projection-of-vector-into-an-axis-along-a-direction*/
 {
     /* Remove from a it's projection onto d */
-    a -= d * dot(a, d);
+    a -= d * dot(a, d);    /// TODO!
     /* Then return a, projected on b orthogonal to a */
     return b * dot(a, a) / dot(a, b);
 }
